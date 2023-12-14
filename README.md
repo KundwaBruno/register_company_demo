@@ -1,40 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Company Registration Demo
 
-## Getting Started
+> A sample form demonstrating the company registration process by collecting necessary details.
 
-First, run the development server:
+## Table of Contents
+
+- [Note](#Note)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Scripts](#Scripts)
+
+## NB
+
+> NB: This is test project for an interview.
+
+## Setup
+
+1. Clone the repository.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/KundwaBruno/portfolioV4
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Install dependencies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+yarn install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Add environment variables.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Run the development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Open your browser and navigate to `http://localhost:3000` if port 3000 is in use check out the terminal to know which port that the project is running on.
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<h3>Main</h3>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- <a href="https://react.dev/" target="_blank">React Js</a>
+- <a href="https://nextjs.org/" target="_blank">NextJs</a>
+- <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
+- <a href="https://ant.design/" target="_blank">Firebase</a>
+
+<h3>Routing</h3>
+
+This project uses NextJs pages directory for routing. <a href="https://nextjs.org/docs/pages" target="_blank">Read more</a> here.
+
+<h3>Git Hooks</h3>
+
+This project uses husky for git hooks. Hooks runs in two ways. Upon commiting and upon pushing to ensure code consistency and effective collaboration. Hooks used are explained below
+
+`pre-commit` : This hooks fixes all linting erros and format codes for consistency. </br>
+`pre-push` : This hook runs build in order to ensure that codes pushed are well run without build errors.
+
+## Scripts
+
+- `yarn dev` : Start development server.
+- `yarn build` : Create an optimized production build.
+- `yarn start` : Start the production server.
+- `lint` : Run ESLint to check for code style issues.
+- `yarn type:check` : Check for code typescript issues.
+- `husky:fix`: Fix husky git hooks commands.
+
+## Contributors
+
+<a href="https://www.linkedin.com/in/kundwabruno/" target="_blank"> Kundwa Bruno Matern</a>
