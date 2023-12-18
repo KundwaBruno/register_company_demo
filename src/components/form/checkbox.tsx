@@ -14,7 +14,7 @@ function CheckBox(
 
   return (
     <div className="flex items-center gap-2">
-      <input type="checkbox" />
+      <input type="checkbox" {...props} />
       <label htmlFor="name" className="text-sm">
         {label}
       </label>

@@ -18,7 +18,7 @@ function TextInput(
         {label} {required ? <span className="text-danger">*</span> : null}
       </label>
       <input
-        className="focus:border-primary rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring"
+        className="rounded border border-gray-300 px-3 py-2 caret-primary focus:border-primary focus:outline-none focus:ring"
         {...props}
       />
     </div>

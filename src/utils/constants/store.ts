@@ -1,0 +1,3 @@
+const STORED_USER_TOKEN_NAMESPACE = "_token_";
+
+export default STORED_USER_TOKEN_NAMESPACE;
