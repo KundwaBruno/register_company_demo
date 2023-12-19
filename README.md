@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/dxyu6elli/image/upload/v1702994876/Screenshot_2023-12-19_at_16.06.47_cy8vws.png" alt="Company Register Demo" />
+  <img src="https://res.cloudinary.com/dxyu6elli/image/upload/v1702996210/Screenshot_2023-12-19_at_16.29.58_afhmld.png" alt="Company Register Demo" />
 </p>
 
 # Company Registration Demo

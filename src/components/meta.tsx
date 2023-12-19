@@ -5,7 +5,7 @@ function Meta() {
   const homeDescription = "Register your company completely free of charge";
   const prodUrl = "https://register-company-demo.vercel.app/";
   const metaImg =
-    "https://res.cloudinary.com/dxyu6elli/image/upload/v1702994978/Screenshot_2023-12-19_at_16.06.47_cy8vws-Thumbnail_xhcigs.png";
+    "https://res.cloudinary.com/dxyu6elli/image/upload/v1702996210/Screenshot_2023-12-19_at_16.29.58_afhmld.png";
 
   return (
     <Head>

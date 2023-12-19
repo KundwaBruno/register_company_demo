@@ -17,7 +17,7 @@ function Header({ companyInfo }: Props) {
 
   const endSession = () => {
     setRouteLoading(true);
-    fetch(routes.endSession.href).then(() => {
+    fetch(routes.endSession.href, { method: "POST" }).then(() => {
       push(routes.register.href).then(() => {
         setRouteLoading(false);
       });
@@ -37,7 +37,11 @@ function Header({ companyInfo }: Props) {
         </div>
       </div>
       <div className="flex justify-end">
-        <Button loading={routeLoading} onClick={endSession}>
+        <Button
+          loading={routeLoading}
+          disabled={routeLoading}
+          onClick={endSession}
+        >
           End Session
         </Button>
       </div>

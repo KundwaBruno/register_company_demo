@@ -43,14 +43,14 @@ function Profile({ companyId }: ProfileProps) {
   }, [companyId]);
 
   return (
-    <div className="profile-bg h-screen w-screen">
+    <div className="profile-bg absolute inset-0 w-screen">
       <Head>
         <title>Edit company</title>
       </Head>
       <Header companyInfo={companyInfo} />
-      <div className="mt-5 p-3">
+      <div className="p-3 md:mt-5">
         <CompanyForm
-          title="Edit"
+          title="Edit Info"
           isEdit
           payload={companyInfo}
           companyId={companyId}

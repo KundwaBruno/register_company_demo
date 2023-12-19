@@ -1,14 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import CompanyForm from "@/components/companyForm";
-import Head from "next/head";
+import Meta from "@/components/meta";
 
 function Home() {
   return (
-    <main className="profile-bg h-screen w-screen items-center justify-center p-3 md:flex">
-      <Head>
-        <title>Register company</title>
-      </Head>
+    <main className="profile-bg absolute inset-0 w-screen items-center justify-center p-3 md:flex">
+      <Meta />
       <CompanyForm title="Register" />
     </main>
   );

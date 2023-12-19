@@ -45,7 +45,7 @@ function SelectInput(
       </div>
       <select
         id="sectors"
-        className="appearance-none rounded-md border border-gray-300 px-3 py-2 accent-primary placeholder:text-container focus:border-primary focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+        className="appearance-none rounded-md border border-gray-300 bg-white px-3 py-2 accent-primary placeholder:text-container focus:border-primary focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
         {...props}
         required
         disabled={!optionsData}

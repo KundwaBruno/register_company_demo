@@ -70,7 +70,7 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
       onSubmit={handleFormSubmit}
       className="flex max-w-[550px] flex-col gap-4 rounded-lg p-3 md:mx-auto md:bg-white md:p-8 md:shadow"
     >
-      <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary">
+      <h2 className="mb-4 text-2xl font-bold tracking-tight text-primary md:text-3xl">
         {title}
       </h2>
       <TextInput
