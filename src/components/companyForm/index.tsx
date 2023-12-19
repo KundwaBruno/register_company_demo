@@ -3,57 +3,57 @@ import Button from "@/components/button";
 import CheckBox from "@/components/form/checkbox";
 import SelectInput from "@/components/form/select";
 import TextInput from "@/components/form/textInput";
+import { regiserCompany, updateCompany } from "@/lib/firebase/companies";
 import routes from "@/utils/constants/routes";
-import STORED_USER_TOKEN_NAMESPACE from "@/utils/constants/store";
-import {
-  getLocalStorageItem,
-  storeItemInLocalStorage,
-} from "@/utils/functions/storage";
 import { ICompanyFormProps } from "@/utils/types/t_companyForm";
-import { push, ref, set } from "firebase/database";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
-import { uuid } from "uuidv4";
+import toast from "react-hot-toast";
 
-import database from "@/lib/firebase";
-
-function CompanyForm({ title, payload, isEdit }: ICompanyFormProps) {
+function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
   const [name, setName] = useState<string>("");
   const [sector, setSector] = useState<number>();
   const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
   const [requestLoading, setRequestLoading] = useState<boolean>(false);
   const { push: changeRoute } = useRouter();
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleErrors = (e: string) => {
+    toast.error(e, {
+      id: "register_key",
+    });
+  };
+
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (isEdit) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const sessionId = getLocalStorageItem(STORED_USER_TOKEN_NAMESPACE);
-    } else {
-      const userId = uuid();
-      storeItemInLocalStorage({
-        itemName: STORED_USER_TOKEN_NAMESPACE,
-        value: userId,
+    const companyInfo = {
+      name,
+      sector,
+      agreeToTerms,
+    };
+
+    if (isEdit && companyId) {
+      updateCompany({
+        key: companyId,
+        payload: companyInfo,
+        callBack: () => {
+          toast.success("Company profile saved successfully");
+        },
+        errorHandler: handleErrors,
+        toggleLoadingState: setRequestLoading,
       });
-      const feedbackListRef = ref(database, "companies");
-      const newFeedbackRef = push(feedbackListRef);
-      setRequestLoading(true);
-      set(newFeedbackRef, {
-        ownerId: userId,
-        name,
-        sector,
-        agreeToTerms,
-      })
-        .then(() => {
+    } else {
+      regiserCompany({
+        payload: companyInfo,
+        callBack: () => {
+          toast.success("Company registered successfully");
           changeRoute(routes.profile.href).then(() => {
             setRequestLoading(false);
           });
-        })
-        .catch(() => {
-          setRequestLoading(false);
-          alert("Something went wrong, Please try again!");
-        });
+        },
+        errorHandler: handleErrors,
+        toggleLoadingState: setRequestLoading,
+      });
     }
   };
 
@@ -68,7 +68,7 @@ function CompanyForm({ title, payload, isEdit }: ICompanyFormProps) {
   return (
     <form
       onSubmit={handleFormSubmit}
-      className="flex max-w-[550px] flex-col gap-4 rounded-lg bg-container p-8 md:mx-auto"
+      className="flex max-w-[550px] flex-col gap-4 rounded-lg bg-container p-8 shadow md:mx-auto"
     >
       <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary">
         {title}

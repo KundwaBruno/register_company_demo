@@ -1,8 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 /* eslint-disable react/jsx-props-no-spreading */
-
 import database from "@/lib/firebase";
 import { ISectorOptions } from "@/utils/types/t_sector";
 import { onValue, query, ref } from "firebase/database";
@@ -49,7 +45,7 @@ function SelectInput(
       </div>
       <select
         id="sectors"
-        className="appearance-none rounded border border-gray-300 px-3 py-2 placeholder:text-container focus:border-primary focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+        className="appearance-none rounded-md border border-gray-300 px-3 py-2 accent-primary placeholder:text-container focus:border-primary focus:outline-none focus:ring disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
         {...props}
         required
         disabled={!optionsData}

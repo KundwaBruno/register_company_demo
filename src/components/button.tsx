@@ -19,15 +19,15 @@ function Button(
   return (
     <button
       type="submit"
-      className="relative cursor-pointer rounded bg-primary px-3 py-2 text-sm text-white hover:bg-primary disabled:opacity-75 md:text-base"
+      className="relative flex cursor-pointer items-center  justify-center gap-2 rounded-md bg-primary px-5 py-2 text-sm text-white hover:bg-primary disabled:opacity-75 md:text-base"
       {...props}
     >
-      {children}
-      {loading && (
-        <div className="absolute right-3 top-2">
+      {loading ? (
+        <div className="">
           <Loader color="white" />
         </div>
-      )}
+      ) : null}
+      {children}
     </button>
   );
 }

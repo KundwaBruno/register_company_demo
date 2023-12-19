@@ -11,14 +11,16 @@
     "type:check": "yarn tsc --project tsconfig.json --pretty --noEmit"
   },
   "dependencies": {
+    "@types/cookie": "^0.6.0",
+    "cookie": "^0.6.0",
     "firebase": "^10.7.1",
     "husky": "^8.0.3",
     "next": "14.0.4",
     "phosphor-react": "^1.4.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-loader-spinner": "^6.1.1-0",
-    "uuidv4": "^6.2.13"
+    "react-hot-toast": "^2.4.1",
+    "react-loader-spinner": "^6.1.1-0"
   },
   "devDependencies": {
     "@types/node": "^20",

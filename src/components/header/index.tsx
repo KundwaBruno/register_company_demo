@@ -1,35 +1,39 @@
+/* eslint-disable react/require-default-props */
 import Avatar from "@/components/avatar";
 import Button from "@/components/button";
 import routes from "@/utils/constants/routes";
-import STORED_USER_TOKEN_NAMESPACE from "@/utils/constants/store";
-import { removeStorageItem } from "@/utils/functions/storage";
+import { ICompanyInfo } from "@/utils/types/t_companyInfo";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Badge from "../badge";
 
-function Header() {
+interface Props {
+  companyInfo?: ICompanyInfo;
+}
+
+function Header({ companyInfo }: Props) {
   const { push } = useRouter();
 
   const [routeLoading, setRouteLoading] = useState<boolean>(false);
 
   const endSession = () => {
     setRouteLoading(true);
-    removeStorageItem(STORED_USER_TOKEN_NAMESPACE);
-    push(routes.register.href).then(() => {
-      setRouteLoading(false);
+    fetch(routes.endSession.href).then(() => {
+      push(routes.register.href).then(() => {
+        setRouteLoading(false);
+      });
     });
   };
 
   return (
-    <div className="flex items-center justify-between gap-5 bg-container p-3">
+    <div className="flex min-h-[73px] items-center justify-between gap-5 bg-container p-3">
       <div className="flex flex-1 items-center gap-2">
         <div>
-          <Avatar name="M" />
+          <Avatar name={companyInfo?.name?.substring(0, 2) as string} />
         </div>
         <div className="flex items-center gap-2">
-          <div className="text-sm font-medium text-primary">Microsoft Inc</div>
-          <div className="text-gray-400">|</div>
-          <Badge label="Bakery & confectionery products" />
+          <div className="md:text-md text-base font-medium text-primary">
+            {companyInfo?.name}
+          </div>
         </div>
       </div>
       <div className="flex justify-end">

@@ -1,23 +1,59 @@
 import CompanyForm from "@/components/companyForm";
 import Header from "@/components/header";
+import { getCompanyInfo } from "@/lib/firebase/companies";
+import routes from "@/utils/constants/routes";
+import STORED_USER_TOKEN_NAMESPACE from "@/utils/constants/store";
+import { ICompanyInfo } from "@/utils/types/t_companyInfo";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
-function Profile() {
+interface ProfileProps {
+  companyId: string;
+}
+
+export const getServerSideProps: GetServerSideProps<ProfileProps> = async (
+  context,
+) => {
+  const { [STORED_USER_TOKEN_NAMESPACE]: companyId } = context.req.cookies;
+
+  if (!companyId || companyId === "undefined") {
+    return {
+      redirect: {
+        destination: routes.register.href,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      companyId,
+    },
+  };
+};
+
+function Profile({ companyId }: ProfileProps) {
+  const [companyInfo, setCompanyInfo] = useState<ICompanyInfo>();
+
+  useEffect(() => {
+    getCompanyInfo(companyId, (data) => {
+      setCompanyInfo(data);
+    });
+  }, [companyId]);
+
   return (
-    <div className="h-screen w-screen">
+    <div className="profile-bg h-screen w-screen">
       <Head>
         <title>Edit company</title>
       </Head>
-      <Header />
+      <Header companyInfo={companyInfo} />
       <div className="mt-5 p-3">
         <CompanyForm
           title="My Company"
           isEdit
-          payload={{
-            name: "Microsoft Inc",
-            sector: 2,
-            agreeToTerms: true,
-          }}
+          payload={companyInfo}
+          companyId={companyId}
         />
       </div>
     </div>

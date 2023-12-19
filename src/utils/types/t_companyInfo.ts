@@ -1,5 +1,5 @@
 export interface ICompanyInfo {
   name: string;
-  sector: number;
+  sector: any;
   agreeToTerms: boolean;
 }
