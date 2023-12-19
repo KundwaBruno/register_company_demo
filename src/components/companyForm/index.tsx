@@ -68,7 +68,7 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
   return (
     <form
       onSubmit={handleFormSubmit}
-      className="flex max-w-[550px] flex-col gap-4 rounded-lg bg-container p-8 shadow md:mx-auto"
+      className="flex max-w-[550px] flex-col gap-4 rounded-lg p-3 md:mx-auto md:bg-white md:p-8 md:shadow"
     >
       <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary">
         {title}

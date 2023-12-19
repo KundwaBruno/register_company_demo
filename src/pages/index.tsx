@@ -5,7 +5,7 @@ import Head from "next/head";
 
 function Home() {
   return (
-    <main className="home-bg h-screen w-screen items-center justify-center p-3 md:flex">
+    <main className="profile-bg h-screen w-screen items-center justify-center p-3 md:flex">
       <Head>
         <title>Register company</title>
       </Head>

@@ -50,7 +50,7 @@ function Profile({ companyId }: ProfileProps) {
       <Header companyInfo={companyInfo} />
       <div className="mt-5 p-3">
         <CompanyForm
-          title="My Company"
+          title="Edit"
           isEdit
           payload={companyInfo}
           companyId={companyId}
