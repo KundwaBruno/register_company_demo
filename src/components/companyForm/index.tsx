@@ -4,18 +4,26 @@ import CheckBox from "@/components/form/checkbox";
 import SelectInput from "@/components/form/select";
 import TextInput from "@/components/form/textInput";
 import { regiserCompany, updateCompany } from "@/lib/firebase/companies";
+import getCompanySectors from "@/lib/firebase/sectors";
 import routes from "@/utils/constants/routes";
 import { ICompanyFormProps } from "@/utils/types/t_companyForm";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import {
+  Options,
+  SelectValue,
+} from "react-tailwindcss-select/dist/components/type";
 
 function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
   const [name, setName] = useState<string>("");
-  const [sector, setSector] = useState<number>();
+  const [selectedSectors, setSelectedSectors] = useState<SelectValue>(null);
   const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
   const [requestLoading, setRequestLoading] = useState<boolean>(false);
+  const [selectErrorMsg, setSelectErrorMsg] = useState<string>("");
   const { push: changeRoute } = useRouter();
+
+  const [sectors, setSectors] = useState<Options>([]);
 
   const handleErrors = (e: string) => {
     toast.error(e, {
@@ -25,10 +33,16 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSelectErrorMsg("");
+
+    if (!selectedSectors) {
+      setSelectErrorMsg("Select atleast one sector");
+      return;
+    }
 
     const companyInfo = {
       name,
-      sector,
+      sectors: selectedSectors,
       agreeToTerms,
     };
 
@@ -58,10 +72,16 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
   };
 
   useEffect(() => {
+    getCompanySectors((data) => {
+      setSectors(data);
+    });
+  }, []);
+
+  useEffect(() => {
     if (payload && isEdit) {
-      const { name: nameToEdit, sector: sectorToEdit } = payload;
+      const { name: nameToEdit, sectors: sectorToEdit } = payload;
       setName(nameToEdit);
-      setSector(sectorToEdit);
+      setSelectedSectors(sectorToEdit);
     }
   }, [isEdit, payload]);
 
@@ -85,11 +105,18 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
       />
       <SelectInput
         label="Sectors"
-        name="sector"
         placeholder="Select sector"
-        onChange={(e) => setSector(Number(e.target.value))}
-        value={sector}
+        options={sectors}
+        value={selectedSectors}
+        onChange={(value) => setSelectedSectors(value)}
         required
+        isMultiple
+        isClearable
+        primaryColor="#3B81F6"
+        isSearchable
+        loading={sectors.length === 0}
+        isDisabled={sectors.length === 0}
+        errorMessage={selectErrorMsg}
       />
       {!isEdit && (
         <CheckBox

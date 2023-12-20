@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable import/no-extraneous-dependencies */
-import { RotatingLines } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 interface Props {
   color?: string;
@@ -8,12 +8,15 @@ interface Props {
 
 function Loader({ color }: Props) {
   return (
-    <RotatingLines
-      strokeColor={color ?? "grey"}
-      strokeWidth="5"
-      animationDuration="0.75"
-      width="23"
+    <Oval
+      height={20}
+      width={20}
+      color={color}
       visible
+      ariaLabel="oval-loading"
+      secondaryColor="#D7E2FD"
+      strokeWidth={7}
+      strokeWidthSecondary={7}
     />
   );
 }

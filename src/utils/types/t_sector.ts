@@ -1,5 +1,5 @@
 export interface ISectorOptions {
-  group: string;
+  label: string;
   options: {
     label: string;
     value: number;
