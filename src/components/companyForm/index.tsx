@@ -111,7 +111,6 @@ function CompanyForm({ title, payload, isEdit, companyId }: ICompanyFormProps) {
         onChange={(value) => setSelectedSectors(value)}
         required
         isMultiple
-        isClearable
         primaryColor="#3B81F6"
         isSearchable
         loading={sectors.length === 0}

@@ -11,16 +11,15 @@ function Meta() {
     <Head>
       <title>Company Register</title>
       <link rel="shortcut icon" href="/logo.svg" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-      />
 
       {/* <!-- Primary Meta Tags --> */}
       <title>{fullName}</title>
       <meta name="title" content={fullName} />
       <meta name="description" content={homeDescription} />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      />
       <meta name="theme-color" content="#000000" />
 
       {/* <!-- Open Graph / Facebook --> */}
